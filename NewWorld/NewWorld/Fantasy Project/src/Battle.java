@@ -1,5 +1,3 @@
-import javax.xml.stream.events.EndElement;
-import java.lang.management.PlatformLoggingMXBean;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -35,46 +33,51 @@ public class Battle {
         int round = 1;
         while (enemy1.alive || enemy2.alive || enemy3.alive ) {
 
-            System.out.println("--------------------ROUND " + round + "-------------------------");
-            overview();
+            if (!enemy1.alive && !enemy2.alive && !enemy3.alive ) {return true;}
+            System.out.println("--------------------" + Utility.color("ROUND " + round,Color.WHITE_BOLD_BRIGHT) + "-------------------------");
+            if (player1.alive){ overview();}
             System.out.println();
             useSkill(player1);
-            overview();
+            if (player2.alive){ overview();}
             useSkill(player2);
-            overview();
+            if (player3.alive){ overview();}
             useSkill(player3);
             if (!enemy1.alive && !enemy2.alive && !enemy3.alive ) {return true;}
-            System.out.println("---------------ENEMY TURN--------------");
+            System.out.println("---------------" + Utility.color("Enemy Turn",Color.WHITE_BOLD_BRIGHT)+"--------------");
             enemySkill(enemy1);
             enemySkill(enemy2);
             enemySkill(enemy3);
 
             round++;
             System.out.println("\n-----------------------------------------\n\n");
-            scan.nextLine();
+            if (!enemy1.alive & !enemy2.alive & !enemy3.alive && (player1.alive || player2.alive || player3.alive)) {
+                return true;
+            } else if (!(player1.alive || player2.alive || player3.alive)){
+                return false;
+            }
+        }
+         return true;
+        }
 
-        }
-        if (player1.alive || player2.alive || player3.alive || !enemy1.alive & !enemy2.alive & !enemy3.alive) {
-        return true;
-        }
-        return false;
-        }
+
 
 
     public void overview(){
-        for (int i = 1; i <= playerTeam.size(); i++){
-            Char temp = playerTeam.get(i-1);
-            System.out.println("(" + i + ") " + temp.info());
+        if (enemy1.alive || enemy2.alive || enemy3.alive ) {
+            for (int i = 1; i <= playerTeam.size(); i++) {
+                Char temp = playerTeam.get(i - 1);
+                System.out.println("(" + i + ") " + temp.info());
 
+            }
+            System.out.println("-------------------------------------------------");
+            for (int i = 1; i <= enemyTeam.size(); i++) {
+                Char temp = enemyTeam.get(i - 1);
+                System.out.println("(" + i + ") " + temp.info());
+
+            }
         }
-        System.out.println("------------------------------");
-        for (int i = 1; i <= enemyTeam.size(); i++){
-            Char temp = enemyTeam.get(i-1);
-            System.out.println("(" + i + ") " + temp.info());
-
-        }
-
     }
+
 
     private void useSkill (Char player) {
         if (player.alive && enemy1.alive || player.alive && enemy2.alive || player.alive && enemy3.alive ) {
@@ -108,10 +111,9 @@ public class Battle {
     private void enemySkill (Char badGuy) { //im the bald guy
         int skillchoice = (int) (Math.random() * 3) ;
         String[] info = badGuy.getSkill(skillchoice); //Info is 0 = Name | 1 (Str) = damage mult (double) | 2 = targetting (Str)
-        System.out.println("\n" + badGuy.getName() + " uses " + info[0] );
         int dmg = (int) Math.round(Double.parseDouble(info[1]) * badGuy.getATK());
         if (badGuy.getName().equals("Hydra Head") || badGuy.alive) { //Only allows them to act if they are alive or hydra head
-            //System.out.println(badGuy.getName() + "Is unable to act!");
+            System.out.println("\n" + Utility.color(badGuy.getName(), Color.CYAN_BOLD_BRIGHT) + " uses " + Utility.color(info[0],Color.BLUE_BRIGHT) );
             if (info[2].equals("Mass Attack")) {
                 for (int i = 0; i < playerTeam.size(); i++) {
                     Char target = playerTeam.get(i);

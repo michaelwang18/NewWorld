@@ -14,34 +14,34 @@ public class Scenario {
 
         System.out.print("(1)");
         if (choice1 == 1 ){
-            System.out.println("Visit The Blacksmith   +20 ATK⚔\uFE0F   +5 DEF\uD83D\uDEE1\uFE0F");
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Visit The Blacksmith   "  + Color.CYAN_BOLD + "+20 ATK⚔\uFE0F   +5 DEF\uD83D\uDEE1\uFE0F" + Color.RESET);
         }
         if (choice1 == 2 ){
-            System.out.println("Visit The Temple   +20 Max HP\uD83D\uDC9A  +20 HP\uD83D\uDC9A");
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Visit The Temple   "  + Color.CYAN_BOLD + "+20 Max HP\uD83D\uDC9A  +20 HP\uD83D\uDC9A" + Color.RESET);
         }
         if (choice1 == 3 ){
-            System.out.println("Train   +10 Max HP\uD83D\uDC9A  +10 HP\uD83D\uDC9A  +10 DEF\uD83D\uDEE1\uFE0F");
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Train   "  + Color.CYAN_BOLD + " +10 Max HP\uD83D\uDC9A  +10 HP\uD83D\uDC9A  +10 DEF\uD83D\uDEE1\uFE0F" + Color.RESET);
         }
         if (choice1 == 4 ){
-            System.out.println("Review Strategy   +10 Max HP\uD83D\uDC9A  +5 ATK⚔\uFE0F  +5 DEF\uD83D\uDEE1\uFE0F");
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Review Strategy   "  + Color.CYAN_BOLD + "+10 Max HP\uD83D\uDC9A  +5 ATK⚔\uFE0F  +5 DEF\uD83D\uDEE1\uFE0F" + Color.RESET);
         }
 
         System.out.print("\n(2)");
 
-        if (choice2 == 1){
-            System.out.println("Visit The Blacksmith   +20 ATK⚔\uFE0F  +5 DEF\uD83D\uDEE1\uFE0F");
+        if (choice2 == 1 ){
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Visit The Blacksmith   "  + Color.CYAN_BOLD + "+20 ATK⚔\uFE0F   +5 DEF\uD83D\uDEE1\uFE0F" + Color.RESET);
         }
-        if (choice2 == 2){
-            System.out.println("Visit The Temple   +20 Max HP\uD83D\uDC9A  +20 HP\uD83D\uDC9A");
+        if (choice2 == 2 ){
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Visit The Temple   "  + Color.CYAN_BOLD + "+20 Max HP\uD83D\uDC9A  +20 HP\uD83D\uDC9A" + Color.RESET);
         }
-        if (choice2 == 3){
-            System.out.println("Train   +10 Max HP\uD83D\uDC9A  +10 HP\uD83D\uDC9A  +10 DEF\uD83D\uDEE1\uFE0F");
+        if (choice2 == 3 ){
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Train   "  + Color.CYAN_BOLD + " +10 Max HP\uD83D\uDC9A  +10 HP\uD83D\uDC9A  +10 DEF\uD83D\uDEE1\uFE0F" + Color.RESET);
         }
-        if (choice2 == 4){
-            System.out.println("Review Strategy   +10 Max HP\uD83D\uDC9A  +5 ATK⚔\uFE0F  +5 DEF\uD83D\uDEE1\uFE0F");
+        if (choice2 == 4 ){
+            System.out.println(Color.WHITE_BOLD_BRIGHT + "Review Strategy   "  + Color.CYAN_BOLD + "+10 Max HP\uD83D\uDC9A  +5 ATK⚔\uFE0F  +5 DEF\uD83D\uDEE1\uFE0F" + Color.RESET);
         }
 
-        System.out.println("\n(3) Rest Up   -- FULL HEAL --");
+        System.out.println( Color.WHITE_BOLD_BRIGHT + "\n(3) Rest Up"  + Color.GREEN_BOLD_BRIGHT + "-- FULL HEAL --" + Color.RESET);
 
 
         int pick = scan.nextInt();

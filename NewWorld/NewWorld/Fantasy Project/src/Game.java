@@ -11,7 +11,7 @@ public class Game {
     private boolean fail = false;
 
     public Game(){
-        System.out.println("WELCOME TO UNTITLED TURN BASED GAME (any key to continue)");
+        System.out.println("WELCOME TO FANTASY PVE (any key to continue)");
         scan.nextLine();
         System.out.println("You will be given 3 random characters that you will have to bring to victory of 5 battles");
         scan.nextLine();
@@ -28,7 +28,7 @@ public class Game {
             player3 = genPlayer();
         }
         printInfo();
-        System.out.println("Press Enter To Start Your First Battle!\n\n\n\n\n\n\n");
+        System.out.println("Press Enter To Start Your First Battle!\n");
         scan.nextLine();
 
 
@@ -37,23 +37,24 @@ public class Game {
             Battle battle =  new Battle(player1,player2,player3,genEnemy(i),genEnemy(i),genEnemy(i));
             if (battle.start()){
                 battles++;
-                player1.info();
-                player2.info();
-                player3.info();
-                System.out.println(5 - battles + "Away From Final Boss- Prepare Carefully! \n");
+                System.out.println( "\n\n" + Utility.color(5 - battles + " Battles", Color.WHITE_BOLD_BRIGHT) + " Away From Final Boss- Prepare Carefully! \n");
                 Scenario.event(player1,player2,player3);
+                System.out.println(Utility.color("CURRENT STATUS",Color.WHITE_BOLD_BRIGHT));
+                System.out.println(player1.info() + "\n" + player2.info() + "\n" + player3.info());
 
 
             } else {
-                System.out.println(" \n\n\n You Lose! ");
+                System.out.println(" \n\n You Lose, Bye Bye!");
                 fail = true;
             }
         }
         if (!fail) {
-            System.out.println("Final Boss!!!");
+            System.out.println("--Final Boss--");
             Battle battle = new Battle(player1, player2, player3, Entity.hydraHead(1), Entity.hydraHead(1), Entity.hydraHead(1));
             if(battle.start()){
-                System.out.println("CONGRATS, You Beat The Hydra!");
+                System.out.println(Utility.color("CONGRATS, You Beat The Hydra!",Color.YELLOW_BOLD_BRIGHT));
+            } else {
+                System.out.println("L Bozo \nBuh Bye");
             }
         }
 
@@ -80,7 +81,7 @@ public class Game {
         System.out.println();
         System.out.println(player3.info());
         player3.printSkillInfo();
-        System.out.println("\n\n\n\n");
+        System.out.println("\n");
     }
 
 
