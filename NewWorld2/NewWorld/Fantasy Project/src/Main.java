@@ -1,13 +1,14 @@
 
 
+
 public class Main {
     public static void main(String[] args) {
 
-        /* Char Bobby = Entity.swordsman(1);
+        Character Bobby = Entity.swordsman(1);
         Scenario.upgrade(Bobby);
 
         System.out.println(Bobby.info());
-        Bobby.printSkillInfo(); */
+        Bobby.printSkillInfo();
 
 
         Game game  = new Game();

@@ -35,6 +35,13 @@ public class Utility {
         return num;
     }
 
+    public static String plural(String input, int number){
+        if (!(1 == Math.abs(number))){
+            return input + "s";
+        }
+        return input;
+    }
+
     public static String color(String input, String color){
         return (color + input + Color.RESET);
     }

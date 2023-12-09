@@ -57,6 +57,8 @@ public class Entity {
         enemy.addSkills(SkillBook.fireBreath());
         return enemy;
     }
+
+
     public static Character[] allEnemies(double scale){
         Character[] list = {goblin(scale),goblin(scale),goblin(scale),goblin(scale),skeleton(scale),skeleton(scale),skeleton(scale),orge(scale),orge(scale),dragon(scale)};
         return list;
@@ -132,6 +134,7 @@ public class Entity {
         int attack = (int) Math.round(55 * scaling);
         int defense = (int) Math.round(55 * scaling);
         Character ally = new Character("A Knight", health, attack, defense);
+        ally.setDescription("His trumpets sound... The Judgement Day hath come.");
         ally.addSkills(SkillBook.shieldBash()); //Shield Bash
         ally.addSkills(SkillBook.swordThrust());
         ally.addSkills(SkillBook.swordSweep());
@@ -143,6 +146,7 @@ public class Entity {
         int attack = (int) Math.round(85 * scaling);
         int defense = (int) Math.round(15 * scaling);
         Character ally = new Character("Duelist", health, attack, defense);
+        ally.setDescription("It's about drive, it's about power. We stay hungry, we devour");
         ally.addSkills(SkillBook.twinslash()); //Shield Bash
         ally.addSkills(SkillBook.swordThrust());
         ally.addSkills(SkillBook.swordSweep());

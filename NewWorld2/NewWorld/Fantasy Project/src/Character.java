@@ -5,7 +5,7 @@ public class Character {
 
 
     private String name;
-    private String description;
+    private String description = "Blah Blah";
     private ArrayList<String[]> allSkills = new ArrayList<String[]>();
     private Scanner scan = new Scanner(System.in);
     private int maxHealth;
@@ -109,6 +109,14 @@ public class Character {
         return allSkills.get(num);
     }
 
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     public ArrayList<Character> getEvolutions() {
         return evolutions;
     }
@@ -164,7 +172,7 @@ public class Character {
             System.out.print(Utility.spaceout(skill[0], 20) + Color.RESET);
             int dmg = (int) Math.round(Double.parseDouble(skill[1]) * attack);
             System.out.print(Utility.color(Utility.spaceout(dmg + " DMG ",8),Color.BLUE));
-            System.out.print(Utility.color(Utility.spaceout(skill[3] + " Hit ",8),Color.BLUE));
+            System.out.print(Utility.color(Utility.spaceout(skill[3] + Utility.plural(" Hit",Integer.parseInt(skill[3])),8),Color.BLUE));
                 System.out.println( Utility.color(skill[2],Color.BLUE));
 
 

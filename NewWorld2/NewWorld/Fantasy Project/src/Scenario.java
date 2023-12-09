@@ -109,9 +109,9 @@ public class Scenario {
 
     public static void upgrade(Character player){
         System.out.println(Utility.color(player.getName(),Color.CYAN_BOLD_BRIGHT) + " Can Promote Into...  \n");
-        for (int i = 0; i < player.getEvolutions().size() -1; i++){
+        for (int i = 0; i < player.getEvolutions().size() ; i++){
             Character newCharacter = player.getEvolutions().get(i);
-            System.out.println("(" + (i + 1) + ") " + Utility.color(newCharacter.getName(),Color.CYAN_BOLD_BRIGHT) + "\nHis trumpets sound... The Judgement Day hath come.\n");
+            System.out.println("(" + (i + 1) + ") " + Utility.color(newCharacter.getName(),Color.CYAN_BOLD_BRIGHT) + "\n" + newCharacter.getDescription() +"\n");
 
         }
             int choice = Utility.tryInput(scan.nextLine(),player.getEvolutions().size()) - 1;

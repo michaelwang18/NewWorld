@@ -33,7 +33,6 @@ public class Battle {
         int round = 1;
         while (enemy1.alive || enemy2.alive || enemy3.alive && (player1.alive || player2.alive || player3.alive) ) {
 
-            if (!enemy1.alive && !enemy2.alive && !enemy3.alive ) {return true;}
             System.out.println("--------------------" + Utility.color("ROUND " + round,Color.WHITE_BOLD_BRIGHT) + "-------------------------");
 
             for (int i = 0; i < playerTeam.size(); i++){
@@ -58,9 +57,6 @@ public class Battle {
         }
          return true;
         }
-
-
-
 
     public void overview(){
         if (enemy1.alive || enemy2.alive || enemy3.alive ) {
@@ -116,9 +112,9 @@ public class Battle {
         int skillchoice = (int) (Math.random() * 3) ;
         String[] info = badGuy.getSkill(skillchoice); //Info is 0 = Name | 1 (Str) = damage mult (double) | 2 = targetting (Str)
         int dmg = (int) Math.round(Double.parseDouble(info[1]) * badGuy.getATK());
-        if (badGuy.getName().equals("Hydra Head") || badGuy.alive) { //Only allows them to act if they are alive or hydra head
+        if ((badGuy.getName().equals("Hydra Head") || badGuy.alive) && (player1.alive || player2.alive || player3.alive)) { //Only allows them to act if they are alive or hydra head
 
-            if (player1.alive || player2.alive || player3.alive){System.out.println("\n" + Utility.color(badGuy.getName(), Color.CYAN_BOLD_BRIGHT) + " uses " + Utility.color(info[0],Color.BLUE_BRIGHT) );}
+            System.out.println("\n" + Utility.color(badGuy.getName(), Color.CYAN_BOLD_BRIGHT) + " uses " + Utility.color(info[0],Color.BLUE_BRIGHT) );
             if (info[2].equals("Mass Attack")) {
                 for (int i = 0; i < playerTeam.size(); i++) {
                     Character target = playerTeam.get(i);
