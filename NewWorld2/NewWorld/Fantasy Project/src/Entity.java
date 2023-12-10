@@ -86,6 +86,7 @@ public class Entity {
         ally.addSkills(SkillBook.tripleShot());
         ally.addSkills(SkillBook.arrowShot());
         ally.addSkills(SkillBook.arrowVolley());
+        ally.addEvolutions(ranger(1),marksman(1));
         return ally;
     }
 
@@ -105,9 +106,10 @@ public class Entity {
         int attack = (int) Math.round(75 * scaling);
         int defense = (int) Math.round(5 * scaling);
         Character ally = new Character("Wizard", health, attack, defense);
-        ally.addSkills(SkillBook.fireball());
-        ally.addSkills(SkillBook.fireBreath());
-        ally.addSkills(SkillBook.thunder());
+        ally.addSkills(SkillBook.magicBolt());
+        ally.addSkills(SkillBook.magicMissiles());
+        ally.addSkills(SkillBook.spiritBomb());
+        ally.addEvolutions(elementalist(1),druid(1));
         return ally;
     }
 
@@ -123,7 +125,7 @@ public class Entity {
     }
 
     public static Character[] startingChar(double scaling){
-        Character[] list = {swordsman(scaling),archer(scaling),barbarian(scaling),wizard(scaling)};
+        Character[] list = {swordsman(scaling),archer(scaling),wizard(scaling)}; //BARBAR TEMP REMOVE
         return list;
     }
 
@@ -134,22 +136,30 @@ public class Entity {
         int attack = (int) Math.round(55 * scaling);
         int defense = (int) Math.round(55 * scaling);
         Character ally = new Character("A Knight", health, attack, defense);
-        ally.setDescription("His trumpets sound... The Judgement Day hath come.");
+        ally.setDescription(Utility.color("Tier 2 Class",Color.PURPLE_BOLD_BRIGHT)
+                + "\n" + Utility.color("His trumpets sound... The judgement day hath come.",Color.PURPLE_BOLD)  +"\nexcels at AOE attacks\nhigher defense and health");
         ally.addSkills(SkillBook.shieldBash()); //Shield Bash
-        ally.addSkills(SkillBook.swordThrust());
+        ally.addSkills(SkillBook.swordCleave());
         ally.addSkills(SkillBook.swordSweep());
         return ally;
     }
+
+
+
+
 
     public static Character duelist(double scaling){ // 1.1 would be 10% scaling, 2.7 would be 170% scaling
         int health = (int) Math.round(180 * scaling); //Hp
         int attack = (int) Math.round(85 * scaling);
         int defense = (int) Math.round(15 * scaling);
         Character ally = new Character("Duelist", health, attack, defense);
-        ally.setDescription("It's about drive, it's about power. We stay hungry, we devour");
-        ally.addSkills(SkillBook.twinslash()); //Shield Bash
+        ally.setDodgeChance(2);
+        ally.setCritChance(2);
+        ally.setDescription(Utility.color(" Tier 2 Class",Color.PURPLE_BOLD_BRIGHT)
+                + "\n" + Utility.color("Block Parry Dodge",Color.PURPLE_BOLD) + "\nexcels in high single target damage\nhigher Critical and Dodge rate");
+        ally.addSkills(SkillBook.airSlash()); //Shield Bash
         ally.addSkills(SkillBook.swordThrust());
-        ally.addSkills(SkillBook.swordSweep());
+        ally.addSkills(SkillBook.tripleSlash());
         return ally;
     }
 
@@ -157,25 +167,68 @@ public class Entity {
 
     public static Character druid(double scaling){ // 1.1 would be 10% scaling, 2.7 would be 170% scaling
         int health = (int) Math.round(175 * scaling); //Hp
-        int attack = (int) Math.round(55 * scaling);
-        int defense = (int) Math.round(55 * scaling);
-        Character ally = new Character("A Knight", health, attack, defense);
-        ally.addSkills(SkillBook.shieldBash()); //Shield Bash
-        ally.addSkills(SkillBook.swordThrust());
-        ally.addSkills(SkillBook.swordSweep());
+        int attack = (int) Math.round(65 * scaling);
+        int defense = (int) Math.round(65 * scaling);
+        Character ally = new Character("Druid", health, attack, defense);
+        ally.setDescription(Utility.color(" Tier 2 Class",Color.PURPLE_BOLD_BRIGHT)
+                + "\n" + Utility.color("\" I am the Lorax, I speak for the trees\"",Color.PURPLE_BOLD) + "\nexcels in aoe attacks\nDodge chance and Defense");
+        ally.setDodgeChance(3);
+        ally.addSkills(SkillBook.thornBurst()); //Shield Bash
+        ally.addSkills(SkillBook.mysticLeaves());
+        ally.addSkills(SkillBook.magicBolt());
         return ally;
     }
 
     public static Character elementalist(double scaling){ // 1.1 would be 10% scaling, 2.7 would be 170% scaling
-        int health = (int) Math.round(180 * scaling); //Hp
+        int health = (int) Math.round(200 * scaling); //Hp
         int attack = (int) Math.round(85 * scaling);
-        int defense = (int) Math.round(15 * scaling);
-        Character ally = new Character("Duelist", health, attack, defense);
-        ally.addSkills(SkillBook.twinslash()); //Shield Bash
-        ally.addSkills(SkillBook.swordThrust());
-        ally.addSkills(SkillBook.swordSweep());
+        int defense = (int) Math.round(30 * scaling);
+        Character ally = new Character("Elementalist", health, attack, defense);
+        ally.setDescription(Utility.color(" Tier 2 Class",Color.PURPLE_BOLD_BRIGHT)
+                + "\n" + Utility.color( "don't let them cook",Color.PURPLE_BOLD) + "\nVersatile high damage\n HIGH ATTACK");
+        ally.addSkills(SkillBook.thunder()); //Shield Bash
+        ally.addSkills(SkillBook.fireball());
+        ally.addSkills(SkillBook.icicleBarrage());
         return ally;
     }
+
+    //ARCHER EVOLUTIONS
+
+    public static Character marksman(double scaling){ // 1.1 would be 10% scaling, 2.7 would be 170% scaling
+        int health = (int) Math.round(175 * scaling); //Hp
+        int attack = (int) Math.round(75 * scaling);
+        int defense = (int) Math.round(15 * scaling);
+        Character ally = new Character("Marksman", health, attack, defense);
+        ally.setDescription(Utility.color(" Tier 2 Class",Color.PURPLE_BOLD_BRIGHT)
+                + "\n" + Utility.color("OOH NAH WHY DOES HE HAVE A GUN, TWO GUNS" ,Color.PURPLE_BOLD) + "\nexcels high damage hits\nhigher Critical Rate and Attack");
+        ally.setCritChance(4);
+        ally.addSkills(SkillBook.doublebarel()); //Shield Bash
+        ally.addSkills(SkillBook.revolver());
+        ally.addSkills(SkillBook.tripleShot());
+        return ally;
+    }
+
+    public static Character ranger(double scaling){ // 1.1 would be 10% scaling, 2.7 would be 170% scaling
+        int health = (int) Math.round(200 * scaling); //Hp
+        int attack = (int) Math.round(65 * scaling);
+        int defense = (int) Math.round(30 * scaling);
+        Character ally = new Character("Ranger", health, attack, defense);
+        ally.setDescription(Utility.color(" Tier 2 Class",Color.PURPLE_BOLD_BRIGHT)
+                + "\n" + Utility.color("Cant touch this" ,Color.PURPLE_BOLD)+ "\nexcels in high single target damage\nhigher Dodge Rate and Attack");
+        ally.addSkills(SkillBook.arrowRain()); //Shield Bash
+        ally.addSkills(SkillBook.arrowShot());
+        ally.addSkills(SkillBook.tripleShot());
+        return ally;
+    }
+
+
+
+
+
+
+
+
+    //BARBARIAN
 
 
 

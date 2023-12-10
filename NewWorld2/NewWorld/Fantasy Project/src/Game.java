@@ -13,6 +13,7 @@ public class Game {
 
     public Game(){
         System.out.println("WELCOME TO FANTASY PVE (any key to continue)");
+        System.out.println("btw Barbarians temp remove, uhhh issues :sunglasses:");
         scan.nextLine();
         System.out.println(Utility.color("CONTROLS ARE ONLY 1,2,3... and Enter",Color.RED_BRIGHT) + Utility.color("    (So stopping spelling things out ughhh)",Color.WHITE));
         scan.nextLine();
@@ -49,17 +50,7 @@ public class Game {
                 System.out.println(player1.info() + "\n" + player2.info() + "\n" + player3.info() + "\n\n");
                 Scenario.event(player1,player2,player3);
             } else {
-                System.out.println(" \n\n You Lose, Bye Bye!");
-                fail = true;
-                System.out.println("Try Again? \n(1) Yes \n(2) No");
-                if (Utility.tryInput(scan.nextLine(),2) == 1){
-                    fail = false;
-                    battles = 0;
-                    start();
-                } else {
-                    System.out.println("See You Next Time!\n\n\n\n          On Dragon Ball Z");
-                    battles = 5;
-                    }
+                failure();
             }
         }
         if (!fail) {
@@ -74,21 +65,39 @@ public class Game {
                     InfiniteMode();
                 }
             } else {
-                System.out.println("L Bozo \nBuh Bye");
+                failure();
             }
         }
 
+    }
+
+    private void failure(){
+        System.out.println(" \n\n You Lose, Bye Bye!");
+        fail = true;
+        System.out.println("Try Again? \n(1) Yes \n(2) No");
+        if (Utility.tryInput(scan.nextLine(),2) == 1){
+            fail = false;
+            battles = 0;
+            start();
+        } else {
+            System.out.println("See You Next Time!\n\n\n\n          On Dragon Ball Z");
+            battles = 5;
+        }
     }
 
     private void InfiniteMode(){
         System.out.println("You Will Be Enter Infinite Mode!\nGo As Far As You Can! (There is a Hydra every 10 fights BTW)");
         boolean lose = false;
         double infScale = 2;
+        double infScaling = .20;
         while (!lose){
+            Scenario.upgrade(player1);
+            Scenario.upgrade(player2);
+            Scenario.upgrade(player3);
             Battle inf =  new Battle(player1,player2,player3,genEnemy(infScale),genEnemy(infScale),genEnemy(infScale));
             if (inf.start()){
                 battles++;
-                infScale += .20;
+                infScale += infScaling;
                 System.out.println( "\n\n" + Utility.color(battles + Utility.plural(" Battle",battles), Color.WHITE_BOLD_BRIGHT) + " Total, Keep it up!");
                 System.out.println( Utility.color(battles + " Battles", Color.WHITE_BOLD_BRIGHT));
                 System.out.println(Utility.color("\n\nCURRENT STATUS",Color.WHITE_BOLD_BRIGHT));
@@ -96,6 +105,9 @@ public class Game {
                 Scenario.event(player1,player2,player3);
                 if (battles % 5 == 0){
                     Battle hydra = new Battle(player1,player2,player3,Entity.hydraHead(infScale),Entity.hydraHead(infScale),Entity.hydraHead(infScale));
+                    if (hydra.start()){
+                        Scenario.event(player1,player2,player3);
+                    } else{failure();}
                 }
 
 
@@ -110,7 +122,7 @@ public class Game {
         return Entity.allEnemies(scaling)[(int) (Math.random()*10)];
     }
     public Character genPlayer(){
-        return Entity.startingChar(1)[(int) (Math.random()*4)];
+        return Entity.startingChar(1)[(int) (Math.random()*3)];
     }
 
     private void scaleUp(double num){ scaling += num;}

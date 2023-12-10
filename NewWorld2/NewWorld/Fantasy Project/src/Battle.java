@@ -96,15 +96,6 @@ public class Battle {
                     target.takeDMG(dmg);
                 }
             }
-            if (info.substring(0, 1).equals("R")) {   //Attempt for random attack
-                int targetChoice = (int) (Math.random() * (enemyTeam.size()));
-                Character target = enemyTeam.get(targetChoice);
-                while(!target.alive){
-                    targetChoice = (int) (Math.random() * (enemyTeam.size()));
-                    target = enemyTeam.get(targetChoice);
-                }
-                target.takeDMG(dmg);
-            }
         }
     }
 

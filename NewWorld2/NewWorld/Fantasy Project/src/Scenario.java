@@ -111,11 +111,15 @@ public class Scenario {
         System.out.println(Utility.color(player.getName(),Color.CYAN_BOLD_BRIGHT) + " Can Promote Into...  \n");
         for (int i = 0; i < player.getEvolutions().size() ; i++){
             Character newCharacter = player.getEvolutions().get(i);
-            System.out.println("(" + (i + 1) + ") " + Utility.color(newCharacter.getName(),Color.CYAN_BOLD_BRIGHT) + "\n" + newCharacter.getDescription() +"\n");
+            System.out.println("(" + (i + 1) + ") " + Utility.color(newCharacter.getName(),Color.CYAN_BOLD_BRIGHT) + " " + newCharacter.getDescription() +"\n");
 
         }
             int choice = Utility.tryInput(scan.nextLine(),player.getEvolutions().size()) - 1;
             player.evolve(player.getEvolutions().get(choice));
+
+        System.out.println(player.info());
+        player.printSkillInfo();
+        scan.nextLine();
 
     }
 

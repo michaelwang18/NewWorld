@@ -16,6 +16,8 @@ public class Character {
     private int defense;
     private int defUp = 0;
     boolean alive = true;
+    private int critChance;
+    private int dodgeChance;
     private ArrayList<Character> evolutions = new ArrayList<Character>();
 
 
@@ -61,8 +63,8 @@ public class Character {
         int damageTaken = dmg - defense;
         boolean dodge = false;
         String dmgColor = Color.WHITE_BOLD_BRIGHT;
-        if (Utility.chance(1,20)){ //Crit
-            damageTaken = dmg * 2;
+        if (Utility.chance(3,20)){ //Crit
+            damageTaken = (int)(dmg * 1.5 - (defense * .5));
             dmgColor = Color.YELLOW_BOLD_BRIGHT;
             System.out.print(Utility.color("CRITICAL HIT! ",dmgColor));
         } else if (Utility.chance(1,20)){
@@ -125,6 +127,14 @@ public class Character {
         return allSkills;
     }
 
+    public void setDodgeChance(int dodgeChance) {
+        this.dodgeChance = dodgeChance;
+    }
+
+    public void setCritChance(int critChance) {
+        this.critChance = critChance;
+    }
+
     public String turn(){
         if (!(name.equals("empty"))&& alive){
             System.out.println( Utility.color("\n" + name + "'s Turn! \n",Color.WHITE_BOLD_BRIGHT));
@@ -172,8 +182,15 @@ public class Character {
             System.out.print(Utility.spaceout(skill[0], 20) + Color.RESET);
             int dmg = (int) Math.round(Double.parseDouble(skill[1]) * attack);
             System.out.print(Utility.color(Utility.spaceout(dmg + " DMG ",8),Color.BLUE));
-            System.out.print(Utility.color(Utility.spaceout(skill[3] + Utility.plural(" Hit",Integer.parseInt(skill[3])),8),Color.BLUE));
-                System.out.println( Utility.color(skill[2],Color.BLUE));
+            System.out.print(Utility.color(Utility.spaceout(skill[3] + Utility.plural(" Hit",Integer.parseInt(skill[3])),12),Color.BLUE));
+            String targeting = skill[2];
+            if (targeting.equals("Mass Attack")){
+                targeting = "AOE";
+            }
+            if (targeting.equals("Single Target")){
+                targeting = "Single";
+            }
+            System.out.println( Utility.color(targeting,Color.BLUE));
 
 
         }
